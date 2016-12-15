@@ -1,15 +1,13 @@
 version: '2'
 services:
-  nginx-proxy:
-    image: jwilder/nginx-proxy
-    container_name: nginx-proxy
-    ports:
-      - "80:80"
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-
-  whoami:
-    image: jwilder/whoami
-    environment:
-      - VIRTUAL_HOST=whoami.local
-
+    nginx-proxy:
+        image: jwilder/nginx-proxy
+        container_name: nginx-proxy
+        ports:
+            - "80:80"
+            - "443:443"
+        #volumes:
+        #    - /var/run/docker.sock:/tmp/docker.sock:ro
+        environment:
+            # Replace with your Docker Swarm Manager IP and Port
+            - "DOCKER_HOST=tcp://10.0.0.1:3376"
